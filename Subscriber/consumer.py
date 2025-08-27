@@ -8,7 +8,8 @@ class Consumer:
             bootstrap_servers=broker,
             group_id=group_id,
             auto_offset_reset='earliest',
-            enable_auto_commit=True
+            enable_auto_commit=True,
+            value_deserializer=lambda v: json.loads(v.decode('utf-8'))
         )
 
     def read_messages(self):
